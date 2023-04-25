@@ -1,13 +1,54 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   export let theme, themeColor;
 
   import Key from "../units/Key.svelte";
   import { KeyTypes, Theme } from "../variables";
+  import { activeInput } from "../store";
 
   let bgClass;
   $: bgClass = theme == Theme.Light ? "bg-slate-50" : "bg-slate-900";
 
-  
+  onMount(() => {
+    jQuery(".key").on("click", (e) => {
+      let activeInputValue: string = String(jQuery(`#${$activeInput}`).val());
+      let arr = activeInputValue.split(" ");
+      let ln = activeInputValue.length;
+      let key = e.currentTarget;
+
+      if (key.classList.contains(KeyTypes.Normal)) {
+        if (
+          !(
+            key.innerHTML == "." &&
+            (arr[arr.length - 1].indexOf(".") > -1 ||
+              activeInputValue[ln - 1] == " ")
+          )
+        )
+          jQuery(`#${$activeInput}`).val(activeInputValue + key.innerHTML);
+      } else if (key.classList.contains(KeyTypes.Operator)) {
+        if (
+          !(activeInputValue[ln - 1] == "." || activeInputValue[ln - 1] == " ")
+        )
+          jQuery(`#${$activeInput}`).val(
+            activeInputValue + " " + key.innerHTML + " "
+          );
+      } else if (
+        key.classList.contains(KeyTypes.Special) &&
+        key.innerHTML == "CL"
+      ) {
+        if (activeInputValue[ln - 1] == " ")
+          jQuery(`#${$activeInput}`).val(activeInputValue.substring(0, ln - 3));
+        else
+          jQuery(`#${$activeInput}`).val(activeInputValue.substring(0, ln - 1));
+      } else if (
+        key.classList.contains(KeyTypes.Special) &&
+        key.innerHTML == "AC"
+      ) {
+        jQuery(`#${$activeInput}`).val("");
+      }
+    });
+  });
 </script>
 
 <table id="Keypad" class="w-screen {bgClass}">
