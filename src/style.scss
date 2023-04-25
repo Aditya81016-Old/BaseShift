@@ -1,3 +1,18 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .disabled {
-    opacity: 0.3;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.activeInput {
+    @apply outline outline-1 outline-slate-300
 }

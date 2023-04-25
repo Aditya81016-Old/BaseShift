@@ -15,7 +15,7 @@
   onMount(() => {});
 </script>
 
-<fieldset class="flex w-screen h-1/4">
+<fieldset class="flex w-screen h-1/4" id="base{base}-field">
   <span
     class="{bgClass} {textClass} flex flex-col justify-center p-2 font-medium text-left opacity-60 base"
     >{base}</span
@@ -24,7 +24,7 @@
     readonly
     type="text"
     id="base{base}"
-    class="{bgClass} h-1/4 {textClass} w-full font-bold text-left focus:outline-slate-300 baseInput"
+    class="{bgClass} h-1/4 {textClass} w-full font-bold text-left baseInput"
     {value}
   />
   <div
