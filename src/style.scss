@@ -17,3 +17,22 @@
     @apply outline outline-1 outline-slate-300
 }
 
+/* width */
+::-webkit-scrollbar {
+    height: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #808080;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cccccc;
+  }

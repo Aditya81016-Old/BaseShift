@@ -45,7 +45,8 @@
   .ans {
     border-radius: 0 0.5rem 0.5rem 0;
     max-width: 69px;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     padding: 0.5rem 1.5rem 0.5rem 0.5rem;
   }
 
