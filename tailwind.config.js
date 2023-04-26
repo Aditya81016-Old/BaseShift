@@ -9,7 +9,7 @@ module.exports = {
         pattern: /bg-(slate|rose|teal|yellow|blue|indigo)-(500|800)/,  
       },
       {
-        pattern: /(bg|text)-slate-(50|100|200|400|800|900)/,  
+        pattern: /(bg|text)-slate-(50|100|300|200|400|800|900)/,  
       },
     ],
   }

@@ -24,10 +24,11 @@
   $: DecimalAns = changeBase($flexibleAns, 10, 10);
   $: HexadecimalAns = changeBase($flexibleAns, 10, 16).toUpperCase()
 
-  let keypadHeight;
+  let keypadHeight, headerHeight;
 
   onMount(() => {
     keypadHeight = j("#Keypad").css("height");
+    headerHeight = j("#Header").css("height");
 
     j(`#${$activeInput}`).addClass("activeInput");
 
@@ -41,7 +42,7 @@
 
 <main
   class="flex flex-col justify-evenly"
-  style="height: calc(100vh - {keypadHeight})"
+  style="height: calc(100vh - {keypadHeight} - {headerHeight} )"
 >
   <BaseBoard base="02" no={BinaryValue} ans={BinaryAns} {theme} />
   <BaseBoard base="08" no={OctalValue} ans={OctalAns} {theme} />

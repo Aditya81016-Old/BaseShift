@@ -5,11 +5,11 @@
 
   import Key from "../units/Key.svelte";
   import { KeyTypes, Theme } from "../variables";
-  import { activeInput, flexibleNo, flexibleAns } from "../store";
+  import { activeInput, flexibleNo, flexibleAns, themeMode } from "../store";
   import { changeBase } from "../module"
 
-  let bgClass;
-  $: bgClass = theme == Theme.Light ? "bg-slate-50" : "bg-slate-900";
+
+  $: bgClass = $themeMode == Theme.Light ? "bg-slate-50" : "bg-slate-900";
 
 
   onMount(() => {
@@ -78,7 +78,7 @@
         $flexibleNo = changeBase(String(jQuery(`#${$activeInput}`).val()), Number($activeInput.replaceAll("base", "")), 10)
         let no = $flexibleNo.replaceAll("÷", "/").replaceAll("×", "*")
         let ans = String(eval(no))
-        $flexibleAns = changeBase(ans, Number($activeInput.replaceAll("base", "")), 10)
+        $flexibleAns = ans
       }
     });
   });
@@ -86,40 +86,40 @@
 
 <table id="Keypad" class="w-screen {bgClass}">
   <tr class="flex my-2 justify-evenly">
-    <td><Key {theme} {themeColor} value="D" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="E" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="F" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="CL" type={KeyTypes.Special} /></td>
+    <td><Key  value="D" type={KeyTypes.Normal} /></td>
+    <td><Key value="E" type={KeyTypes.Normal} /></td>
+    <td><Key value="F" type={KeyTypes.Normal} /></td>
+    <td><Key  value="CL" type={KeyTypes.Special} /></td>
   </tr>
   <tr class="flex my-2 justify-evenly">
-    <td><Key {theme} {themeColor} value="A" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="B" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="C" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="÷" type={KeyTypes.Operator} /></td>
+    <td><Key value="A" type={KeyTypes.Normal} /></td>
+    <td><Key  value="B" type={KeyTypes.Normal} /></td>
+    <td><Key value="C" type={KeyTypes.Normal} /></td>
+    <td><Key value="÷" type={KeyTypes.Operator} /></td>
   </tr>
   <tr class="flex my-2 justify-evenly">
-    <td><Key {theme} {themeColor} value="7" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="8" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="9" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="×" type={KeyTypes.Operator} /></td>
+    <td><Key  value="7" type={KeyTypes.Normal} /></td>
+    <td><Key value="8" type={KeyTypes.Normal} /></td>
+    <td><Key value="9" type={KeyTypes.Normal} /></td>
+    <td><Key  value="×" type={KeyTypes.Operator} /></td>
   </tr>
   <tr class="flex my-2 justify-evenly">
-    <td><Key {theme} {themeColor} value="4" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="5" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="6" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="-" type={KeyTypes.Operator} /></td>
+    <td><Key  value="4" type={KeyTypes.Normal} /></td>
+    <td><Key  value="5" type={KeyTypes.Normal} /></td>
+    <td><Key value="6" type={KeyTypes.Normal} /></td>
+    <td><Key  value="-" type={KeyTypes.Operator} /></td>
   </tr>
   <tr class="flex my-2 justify-evenly">
-    <td><Key {theme} {themeColor} value="1" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="2" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="3" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="+" type={KeyTypes.Operator} /></td>
+    <td><Key value="1" type={KeyTypes.Normal} /></td>
+    <td><Key  value="2" type={KeyTypes.Normal} /></td>
+    <td><Key value="3" type={KeyTypes.Normal} /></td>
+    <td><Key  value="+" type={KeyTypes.Operator} /></td>
   </tr>
   <tr class="flex my-2 justify-evenly">
-    <td><Key {theme} {themeColor} value="AC" type={KeyTypes.Special} /></td>
-    <td><Key {theme} {themeColor} value="0" type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="." type={KeyTypes.Normal} /></td>
-    <td><Key {theme} {themeColor} value="=" type={KeyTypes.Special} /></td>
+    <td><Key value="AC" type={KeyTypes.Special} /></td>
+    <td><Key  value="0" type={KeyTypes.Normal} /></td>
+    <td><Key value="." type={KeyTypes.Normal} /></td>
+    <td><Key value="=" type={KeyTypes.Special} /></td>
   </tr>
 </table>
 
