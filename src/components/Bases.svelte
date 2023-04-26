@@ -4,7 +4,7 @@
   import BaseBoard from "../units/BaseBoard.svelte";
   import j from "jquery";
   import { changeBase } from "../module";
-  import { flexibleNo, activeInput } from "../store";
+  import { flexibleNo, flexibleAns, activeInput } from "../store";
   import { onMount } from "svelte";
   import Key from "../units/Key.svelte";
 
@@ -15,10 +15,15 @@
 
   console.log(changeBase("A.8", 16, 10));
 
-  $: binaryValue = changeBase($flexibleNo, 10, 2);
+  $: BinaryValue = changeBase($flexibleNo, 10, 2);
   $: OctalValue = changeBase($flexibleNo, 10, 8);
   $: DecimalValue = changeBase($flexibleNo, 10, 10);
   $: HexadecimalValue = changeBase($flexibleNo, 10, 16).toUpperCase();
+
+  $: BinaryAns = changeBase($flexibleAns, 10, 2);
+  $: OctalAns = changeBase($flexibleAns, 10, 8)
+  $: DecimalAns = changeBase($flexibleAns, 10, 10);
+  $: HexadecimalAns = changeBase($flexibleAns, 10, 16).toUpperCase()
 
   let keypadHeight;
 
@@ -39,10 +44,10 @@
   class="flex flex-col justify-evenly"
   style="height: calc(100vh - {keypadHeight})"
 >
-  <BaseBoard base="02" no={binaryValue} {theme} />
-  <BaseBoard base="08" no={OctalValue} {theme} />
-  <BaseBoard base="10" no={DecimalValue} {theme} />
-  <BaseBoard base="16" no={HexadecimalValue} {theme} />
+  <BaseBoard base="02" no={BinaryValue} ans={BinaryAns} {theme} />
+  <BaseBoard base="08" no={OctalValue} ans={OctalAns} {theme} />
+  <BaseBoard base="10" no={DecimalValue} ans={DecimalAns} {theme} />
+  <BaseBoard base="16" no={HexadecimalValue} ans={HexadecimalAns} {theme} />
 </main>
 
 <style lang="scss"></style>

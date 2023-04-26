@@ -11,10 +11,11 @@
 
 </script>
 
-<main class="w-screen h-screen {bgClass}">
+<main class="w-screen h-screen {bgClass}" id="App">
   <Bases {theme}/>
   <Keypad {theme} {themeColor}/>
 </main>
 
 <style lang="scss">
+  
 </style>

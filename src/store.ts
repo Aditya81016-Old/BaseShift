@@ -1,4 +1,7 @@
 import { writable } from "svelte/store";
 
-export const flexibleNo = writable("");
+let eq = "10.5 + 8"
+
+export const flexibleNo = writable(eq);
+export const flexibleAns = writable(String(eval(eq)))
 export const activeInput = writable("base10")

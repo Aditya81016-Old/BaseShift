@@ -5,13 +5,11 @@
 
   import Key from "../units/Key.svelte";
   import { KeyTypes, Theme } from "../variables";
-  import { activeInput, flexibleNo } from "../store";
+  import { activeInput, flexibleNo, flexibleAns } from "../store";
   import { changeBase } from "../module"
 
   let bgClass;
   $: bgClass = theme == Theme.Light ? "bg-slate-50" : "bg-slate-900";
-  $: base = $activeInput.replaceAll("base", "")
-  console.log($activeInput.replaceAll("base", ""), base)
 
   onMount(() => {
     jQuery(".key").on("click", (e) => {
@@ -58,9 +56,18 @@
         
         jQuery(`#${$activeInput}`).val("");
         
+      } else if (
+        key.classList.contains(KeyTypes.Special) &&
+        key.innerHTML == "="
+      ) {
+        
+        jQuery(`#${$activeInput}`).val($flexibleAns);
+        
       }
 
       $flexibleNo = changeBase(String(jQuery(`#${$activeInput}`).val()), Number($activeInput.replaceAll("base", "")), 10)
+      let ans = String(eval($flexibleNo.replaceAll("÷", "/").replaceAll("×", "*")))
+      $flexibleAns = changeBase(ans, Number($activeInput.replaceAll("base", "")), 10)
     });
   });
 </script>

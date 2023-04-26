@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  export let theme, no, base;
+  export let theme, no, ans, base;
 
   import { Theme } from "../variables";
 
@@ -28,8 +28,8 @@
     {value}
   />
   <div
-    class="{bgClass} {textClass}flex flex-col justify-center p-2 font-medium text-left opacity-60 ans"
-  />
+    class="{bgClass} {textClass} flex flex-col justify-center p-2 font-medium text-left opacity-60 ans"
+  >{ans}</div>
 </fieldset>
 
 <style lang="scss">
