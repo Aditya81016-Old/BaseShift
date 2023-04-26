@@ -13,7 +13,6 @@
   //   thisFlex = value
   // })
 
-  console.log(changeBase("A.8", 16, 10));
 
   $: BinaryValue = changeBase($flexibleNo, 10, 2);
   $: OctalValue = changeBase($flexibleNo, 10, 8);

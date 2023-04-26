@@ -11,12 +11,14 @@
   let bgClass;
   $: bgClass = theme == Theme.Light ? "bg-slate-50" : "bg-slate-900";
 
+
   onMount(() => {
     jQuery(".key").on("click", (e) => {
       let activeInputValue: string = String(jQuery(`#${$activeInput}`).val());
       let arr = activeInputValue.split(" ");
       let ln = activeInputValue.length;
       let key = e.currentTarget;
+      let ignore = false
 
       if (key.classList.contains(KeyTypes.Normal)) {
         
@@ -28,6 +30,10 @@
           )
         )
           jQuery(`#${$activeInput}`).val(activeInputValue + key.innerHTML);
+
+        if (key.innerHTML == ".") {
+          ignore = true
+        }
           
       } else if (key.classList.contains(KeyTypes.Operator)) {
         
@@ -48,6 +54,9 @@
           
         else
           jQuery(`#${$activeInput}`).val(activeInputValue.substring(0, ln - 1));
+
+        if (jQuery(`#${$activeInput}`).val()[String(jQuery(`#${$activeInput}`).val()).length - 1] == ".")
+          ignore = true
           
       } else if (
         key.classList.contains(KeyTypes.Special) &&
@@ -65,9 +74,12 @@
         
       }
 
-      $flexibleNo = changeBase(String(jQuery(`#${$activeInput}`).val()), Number($activeInput.replaceAll("base", "")), 10)
-      let ans = String(eval($flexibleNo.replaceAll("÷", "/").replaceAll("×", "*")))
-      $flexibleAns = changeBase(ans, Number($activeInput.replaceAll("base", "")), 10)
+      if (!ignore) {
+        $flexibleNo = changeBase(String(jQuery(`#${$activeInput}`).val()), Number($activeInput.replaceAll("base", "")), 10)
+        let no = $flexibleNo.replaceAll("÷", "/").replaceAll("×", "*")
+        let ans = String(eval(no))
+        $flexibleAns = changeBase(ans, Number($activeInput.replaceAll("base", "")), 10)
+      }
     });
   });
 </script>
