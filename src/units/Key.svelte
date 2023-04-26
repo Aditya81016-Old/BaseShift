@@ -4,7 +4,6 @@
   import { onMount } from "svelte";
   import { activeInput } from "../store";
   import { Theme, KeyTypes } from "../variables";
-  import { isNumeric } from "jquery";
 
   let bgClass, textClass, activeClass;
 

@@ -13,23 +13,25 @@
   //   thisFlex = value
   // })
 
-  $: binaryValue = changeBase(DecimalValue, 2);
-  $: OctalValue = changeBase(DecimalValue, 8);
-  $: DecimalValue = $flexibleNo;
-  $: HexadecimalValue = changeBase(DecimalValue, 16).toUpperCase();
+  console.log(changeBase("A.8", 16, 10));
+
+  $: binaryValue = changeBase($flexibleNo, 10, 2);
+  $: OctalValue = changeBase($flexibleNo, 10, 8);
+  $: DecimalValue = changeBase($flexibleNo, 10, 10);
+  $: HexadecimalValue = changeBase($flexibleNo, 10, 16).toUpperCase();
 
   let keypadHeight;
 
   onMount(() => {
     keypadHeight = j("#Keypad").css("height");
 
-    j(`#${$activeInput}`).addClass("activeInput")
+    j(`#${$activeInput}`).addClass("activeInput");
 
     j(".baseInput").on("click", (e) => {
-      $activeInput = e.currentTarget.id
-      j(".activeInput").removeClass("activeInput")
-      j(`#${$activeInput}`).addClass("activeInput") 
-    })
+      $activeInput = e.currentTarget.id;
+      j(".activeInput").removeClass("activeInput");
+      j(`#${$activeInput}`).addClass("activeInput");
+    });
   });
 </script>
 

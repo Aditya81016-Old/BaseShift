@@ -5,10 +5,13 @@
 
   import Key from "../units/Key.svelte";
   import { KeyTypes, Theme } from "../variables";
-  import { activeInput } from "../store";
+  import { activeInput, flexibleNo } from "../store";
+  import { changeBase } from "../module"
 
   let bgClass;
   $: bgClass = theme == Theme.Light ? "bg-slate-50" : "bg-slate-900";
+  $: base = $activeInput.replaceAll("base", "")
+  console.log($activeInput.replaceAll("base", ""), base)
 
   onMount(() => {
     jQuery(".key").on("click", (e) => {
@@ -18,35 +21,46 @@
       let key = e.currentTarget;
 
       if (key.classList.contains(KeyTypes.Normal)) {
+        
         if (
           !(
             key.innerHTML == "." &&
             (arr[arr.length - 1].indexOf(".") > -1 ||
-              activeInputValue[ln - 1] == " ")
+              activeInputValue[ln - 1] == " " || ln == 0)
           )
         )
           jQuery(`#${$activeInput}`).val(activeInputValue + key.innerHTML);
+          
       } else if (key.classList.contains(KeyTypes.Operator)) {
+        
         if (
           !(activeInputValue[ln - 1] == "." || activeInputValue[ln - 1] == " ")
         )
           jQuery(`#${$activeInput}`).val(
             activeInputValue + " " + key.innerHTML + " "
           );
+          
       } else if (
         key.classList.contains(KeyTypes.Special) &&
         key.innerHTML == "CL"
       ) {
+        
         if (activeInputValue[ln - 1] == " ")
           jQuery(`#${$activeInput}`).val(activeInputValue.substring(0, ln - 3));
+          
         else
           jQuery(`#${$activeInput}`).val(activeInputValue.substring(0, ln - 1));
+          
       } else if (
         key.classList.contains(KeyTypes.Special) &&
         key.innerHTML == "AC"
       ) {
+        
         jQuery(`#${$activeInput}`).val("");
+        
       }
+
+      $flexibleNo = changeBase(String(jQuery(`#${$activeInput}`).val()), Number($activeInput.replaceAll("base", "")), 10)
     });
   });
 </script>
