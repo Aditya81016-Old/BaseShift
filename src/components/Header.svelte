@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let theme, themeColor;
+  export let theme;
   import { Theme, ThemeColor } from "../variables";
   import { themeMode, themeColorMode } from "../store";
   import { onMount } from "svelte";

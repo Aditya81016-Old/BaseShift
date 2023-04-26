@@ -14,9 +14,9 @@
 </script>
 
 <main class="w-screen h-screen {bgClass}" id="App">
-  <Header {theme} {themeColor}/>
+  <Header {theme}/>
   <Bases {theme}/>
-  <Keypad {theme} {themeColor}/>
+  <Keypad />
 </main>
 
 <style lang="scss">

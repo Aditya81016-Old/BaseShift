@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  export let theme, themeColor;
-
   import Key from "../units/Key.svelte";
   import { KeyTypes, Theme } from "../variables";
   import { activeInput, flexibleNo, flexibleAns, themeMode } from "../store";
