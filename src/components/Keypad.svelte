@@ -82,7 +82,7 @@
   });
 </script>
 
-<table id="Keypad" class="w-screen {bgClass}">
+<table id="Keypad" class="w-screen fixed bottom-0 {bgClass}">
   <tr class="flex my-2 justify-evenly">
     <td><Key  value="D" type={KeyTypes.Normal} /></td>
     <td><Key value="E" type={KeyTypes.Normal} /></td>
